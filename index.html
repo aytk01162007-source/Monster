@@ -30,65 +30,163 @@
         剣と魔法が息づく世界へ。<br>
         仲間と共に、まだ見ぬ冒険へ踏み出そう。
       </p>
-      <a href="#entry" class="hero-button">冒険を始める　→</a>
+      <a href="#registration" class="hero-button">冒険者登録へ　→</a>
     </div>
     <div class="hero-caption">THE WORLD AWAITS YOU</div>
   </section>
 
-  <section class="entry-section" id="entry">
+  <section class="registration" id="registration">
     <div class="section-heading">
-      <span>01 / ENTRY</span>
-      <h2>冒険者受付</h2>
-      <p>イベントコードを入力して、冒険に参加しよう。</p>
+      <span>01 / CHARACTER CREATION</span>
+      <h2>冒険者登録</h2>
+      <p>自分だけの冒険者を創造しよう。</p>
     </div>
 
-    <div class="entry-card">
-      <div class="crest">✦</div>
-      <h3>イベント参加</h3>
-      <p>ギルドから発行されたイベントコードを入力してください。</p>
+    <form id="characterForm">
 
-      <label for="eventCode">EVENT CODE</label>
-      <input
-        type="text"
-        id="eventCode"
-        placeholder="イベントコードを入力"
-        maxlength="30"
-        autocomplete="off"
-      >
+      <div class="form-card">
+        <h3>Ⅰ. 基本情報</h3>
 
-      <button id="joinButton" class="primary-button">
-        イベントに参加する
+        <label for="characterName">冒険者名</label>
+        <input id="characterName" type="text"
+          maxlength="20" placeholder="冒険者名を入力" required>
+
+        <label for="characterJob">職業名</label>
+        <input id="characterJob" type="text"
+          maxlength="30" placeholder="自由に職業を設定" required>
+
+        <p class="hint">職業は自由に命名できます。</p>
+      </div>
+
+      <div class="form-card">
+        <h3>Ⅱ. 初期能力値</h3>
+
+        <div class="point-summary">
+          <span>使用ポイント</span>
+          <strong><span id="usedPoints">0</span> / 300</strong>
+        </div>
+
+        <div class="point-bar">
+          <div id="pointBar"></div>
+        </div>
+
+        <p class="hint">
+          合計300ポイントを5つの能力に自由に配分してください。
+          各能力の上限は150です。
+        </p>
+
+        <div class="stat-input">
+          <label for="atk">ATK / 攻撃力</label>
+          <input id="atk" type="number" min="0" max="150" value="60">
+        </div>
+
+        <div class="stat-input">
+          <label for="def">DEF / 防御力</label>
+          <input id="def" type="number" min="0" max="150" value="60">
+        </div>
+
+        <div class="stat-input">
+          <label for="spd">SPD / 素早さ</label>
+          <input id="spd" type="number" min="0" max="150" value="60">
+        </div>
+
+        <div class="stat-input">
+          <label for="mat">MAT / 魔法攻撃力</label>
+          <input id="mat" type="number" min="0" max="150" value="60">
+        </div>
+
+        <div class="stat-input">
+          <label for="mdf">MDF / 魔法防御力</label>
+          <input id="mdf" type="number" min="0" max="150" value="60">
+        </div>
+
+        <div class="hp-display">
+          <span>HP / 体力</span>
+          <strong>500</strong>
+          <small>初期固定値・能力ポイント消費なし</small>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>Ⅲ. 成長傾向</h3>
+        <p class="hint">
+          レベルアップ時に成長しやすい能力を順位付けしてください。
+          1位が最も成長しやすく、6位が最も成長しにくくなります。
+        </p>
+
+        <div id="growthList">
+          <div class="growth-row">
+            <label for="rank-hp">HP / 体力</label>
+            <select id="rank-hp" data-growth="hp">
+              <option value="1">1位</option><option value="2">2位</option>
+              <option value="3">3位</option><option value="4">4位</option>
+              <option value="5">5位</option><option value="6" selected>6位</option>
+            </select>
+          </div>
+
+          <div class="growth-row">
+            <label for="rank-atk">ATK / 攻撃力</label>
+            <select id="rank-atk" data-growth="atk">
+              <option value="1" selected>1位</option><option value="2">2位</option>
+              <option value="3">3位</option><option value="4">4位</option>
+              <option value="5">5位</option><option value="6">6位</option>
+            </select>
+          </div>
+
+          <div class="growth-row">
+            <label for="rank-def">DEF / 防御力</label>
+            <select id="rank-def" data-growth="def">
+              <option value="1">1位</option><option value="2" selected>2位</option>
+              <option value="3">3位</option><option value="4">4位</option>
+              <option value="5">5位</option><option value="6">6位</option>
+            </select>
+          </div>
+
+          <div class="growth-row">
+            <label for="rank-spd">SPD / 素早さ</label>
+            <select id="rank-spd" data-growth="spd">
+              <option value="1">1位</option><option value="2">2位</option>
+              <option value="3" selected>3位</option><option value="4">4位</option>
+              <option value="5">5位</option><option value="6">6位</option>
+            </select>
+          </div>
+
+          <div class="growth-row">
+            <label for="rank-mat">MAT / 魔法攻撃力</label>
+            <select id="rank-mat" data-growth="mat">
+              <option value="1">1位</option><option value="2">2位</option>
+              <option value="3">3位</option><option value="4" selected>4位</option>
+              <option value="5">5位</option><option value="6">6位</option>
+            </select>
+          </div>
+
+          <div class="growth-row">
+            <label for="rank-mdf">MDF / 魔法防御力</label>
+            <select id="rank-mdf" data-growth="mdf">
+              <option value="1">1位</option><option value="2">2位</option>
+              <option value="3">3位</option><option value="4">4位</option>
+              <option value="5" selected>5位</option><option value="6">6位</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="rankMessage" class="message"></p>
+      </div>
+
+      <button type="submit" class="primary-button">
+        冒険者を登録する
       </button>
 
-      <p id="message" class="message" aria-live="polite"></p>
-    </div>
-  </section>
+      <p id="formMessage" class="message" aria-live="polite"></p>
+    </form>
 
-  <section class="features">
-    <div class="section-heading">
-      <span>02 / ADVENTURE</span>
-      <h2>ギルドの案内</h2>
-      <p>冒険者たちを待つ、様々な活動。</p>
-    </div>
-
-    <div class="feature-grid">
-      <article class="feature-card">
-        <div class="feature-icon">⚔</div>
-        <h3>魔物討伐</h3>
-        <p>仲間と協力し、各地に現れる魔物を討伐せよ。</p>
-      </article>
-
-      <article class="feature-card">
-        <div class="feature-icon">♜</div>
-        <h3>パーティー編成</h3>
-        <p>仲間を集め、自分たちだけの冒険者チームを結成しよう。</p>
-      </article>
-
-      <article class="feature-card">
-        <div class="feature-icon">✧</div>
-        <h3>冒険者の記録</h3>
-        <p>討伐の記録や獲得した報酬を確認しよう。</p>
-      </article>
+    <div id="result" class="form-card result-card" hidden>
+      <h3>冒険者登録完了</h3>
+      <p>あなたの冒険者情報が作成されました。</p>
+      <div id="resultContent"></div>
+      <button type="button" id="editButton" class="secondary-button">
+        登録画面に戻る
+      </button>
     </div>
   </section>
 
@@ -96,7 +194,7 @@
     <div>
       <span>GUILD INFORMATION</span>
       <h2>ギルドからのお知らせ</h2>
-      <p>現在、新たな冒険者を募集しています。</p>
+      <p>仲間と共に、新たなる冒険へ。</p>
     </div>
     <div class="notice-icon">📜</div>
   </section>
