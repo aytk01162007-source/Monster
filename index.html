@@ -1,23 +1,112 @@
+
 <!DOCTYPE html>
-
 <html lang="ja">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>My Game</title>
-
+  <meta name="theme-color" content="#f4f0e5">
+  <title>冒険者ギルド | ADVENTURER'S GUILD</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <h1>My Game</h1>
+<header class="header">
+  <div class="brand">
+    <div class="brand-mark">⚔</div>
+    <div>
+      <p class="brand-sub">ADVENTURER'S GUILD</p>
+      <h1>冒険者ギルド</h1>
+    </div>
+  </div>
+  <span class="header-label">GUILD SYSTEM</span>
+</header>
 
-  <p>ゲームサイト制作開始！</p>
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <p class="eyebrow">WELCOME, ADVENTURER</p>
+      <h2>未知なる冒険が、<br>ここから始まる。</h2>
+      <p class="hero-description">
+        剣と魔法が息づく世界へ。<br>
+        仲間と共に、まだ見ぬ冒険へ踏み出そう。
+      </p>
+      <a href="#entry" class="hero-button">冒険を始める　→</a>
+    </div>
+    <div class="hero-caption">THE WORLD AWAITS YOU</div>
+  </section>
 
+  <section class="entry-section" id="entry">
+    <div class="section-heading">
+      <span>01 / ENTRY</span>
+      <h2>冒険者受付</h2>
+      <p>イベントコードを入力して、冒険に参加しよう。</p>
+    </div>
+
+    <div class="entry-card">
+      <div class="crest">✦</div>
+      <h3>イベント参加</h3>
+      <p>ギルドから発行されたイベントコードを入力してください。</p>
+
+      <label for="eventCode">EVENT CODE</label>
+      <input
+        type="text"
+        id="eventCode"
+        placeholder="イベントコードを入力"
+        maxlength="30"
+        autocomplete="off"
+      >
+
+      <button id="joinButton" class="primary-button">
+        イベントに参加する
+      </button>
+
+      <p id="message" class="message" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="section-heading">
+      <span>02 / ADVENTURE</span>
+      <h2>ギルドの案内</h2>
+      <p>冒険者たちを待つ、様々な活動。</p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature-card">
+        <div class="feature-icon">⚔</div>
+        <h3>魔物討伐</h3>
+        <p>仲間と協力し、各地に現れる魔物を討伐せよ。</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">♜</div>
+        <h3>パーティー編成</h3>
+        <p>仲間を集め、自分たちだけの冒険者チームを結成しよう。</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">✧</div>
+        <h3>冒険者の記録</h3>
+        <p>討伐の記録や獲得した報酬を確認しよう。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="notice">
+    <div>
+      <span>GUILD INFORMATION</span>
+      <h2>ギルドからのお知らせ</h2>
+      <p>現在、新たな冒険者を募集しています。</p>
+    </div>
+    <div class="notice-icon">📜</div>
+  </section>
+</main>
+
+<footer>
+  <p>ADVENTURER'S GUILD</p>
+  <span>© 2026 GUILD SYSTEM</span>
+</footer>
+
+<script src="script.js"></script>
 </body>
-
 </html>
