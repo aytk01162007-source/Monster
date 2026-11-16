@@ -190,6 +190,55 @@
     </div>
   </section>
 
+  
+  <section class="party-section" id="party">
+    <div class="section-heading">
+      <span>02 / PARTY FORMATION</span>
+      <h2>パーティー編成</h2>
+      <p>仲間を集い、未知なる迷宮へ。</p>
+    </div>
+
+    <div class="form-card">
+      <h3>Ⅰ. パーティーを結成する</h3>
+      <label for="partyName">パーティー名</label>
+      <input id="partyName" type="text"
+        maxlength="20" placeholder="パーティー名を入力">
+
+      <button type="button" id="createPartyButton"
+        class="primary-button">
+        パーティーを結成する
+      </button>
+    </div>
+
+    <div class="form-card">
+      <h3>Ⅱ. パーティーに参加する</h3>
+      <label for="partyCode">招待コード</label>
+      <input id="partyCode" type="text"
+        maxlength="12" placeholder="招待コードを入力">
+
+      <button type="button" id="joinPartyButton"
+        class="secondary-button">
+        パーティーに参加する
+      </button>
+      <p id="partyMessage" class="message"
+        aria-live="polite"></p>
+    </div>
+
+    <div class="form-card" id="partyInfo" hidden>
+      <h3>Ⅲ. パーティー情報</h3>
+      <p>パーティー名：<strong id="displayPartyName"></strong></p>
+      <p>招待コード：<strong id="displayPartyCode"></strong></p>
+      <p>参加人数：<strong id="partyMemberCount">1 / 6人</strong></p>
+
+      <div id="partyMembers"></div>
+
+      <button type="button" id="leavePartyButton"
+        class="secondary-button">
+        パーティーから脱退する
+      </button>
+    </div>
+  </section>
+
   <section class="notice">
     <div>
       <span>GUILD INFORMATION</span>
