@@ -1,37 +1,16 @@
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInAnonymously
-} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-// Firebaseの設定
-const firebaseConfig = {
-  apiKey: "AIzaSyAOdS7SapxXTxxROglvMuknTdEEWosvsc0",
-  authDomain: "monsterguild-3db18.firebaseapp.com",
-  projectId: "monsterguild-3db18",
-  storageBucket: "monsterguild-3db18.firebasestorage.app",
-  messagingSenderId: "14222775753",
-  appId: "1:14222775753:web:6a256cc48cb7de9b688418"
-};
+import { db, ensureSignedIn } from "./firebase.js";
 
-// Firebaseを初期化
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
-const db = getFirestore(firebaseApp);
-
-// 匿名認証
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    console.log("匿名認証に成功しました！");
-  } else {
-    signInAnonymously(auth).catch((error) => {
-      console.error("匿名認証エラー:", error);
-    });
-  }
-});
+// Firebase匿名認証
+ensureSignedIn()
+  .then((user) => {
+    console.log("Firebase接続成功！");
+    console.log("ユーザーID:", user.uid);
+  })
+  .catch((error) => {
+    console.error("Firebase接続エラー:", error);
+  });
 
 const form = document.getElementById("characterForm");
 const result = document.getElementById("result");
