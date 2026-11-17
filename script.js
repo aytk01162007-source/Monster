@@ -7,15 +7,17 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
-// Firebase匿名認証（動作確認用）
+// Firebase匿名認証（動作確認）
+alert("script.jsの読み込み成功！");
+
 ensureSignedIn()
   .then((user) => {
     alert("Firebase認証成功！");
-    console.log("Firebase接続成功！", user.uid);
+    console.log("ユーザーID:", user.uid);
   })
   .catch((error) => {
     alert("Firebase認証失敗：" + error.message);
-    console.error("Firebase接続エラー:", error);
+    console.error(error);
   });
 
 const form = document.getElementById("characterForm");
