@@ -106,7 +106,86 @@ function getGrowthWeights(ranks) {
   return result;
 }
 
-function registerCharacter(event) {
+async function registerCharacter(event) {
+  event.preventDefault();
+
+  formMessage.textContent = "";
+
+  const name = document.getElementById("characterName").value.trim();
+  const job = document.getElementById("characterJob").value.trim();
+  const stats = getStats();
+  const total = updatePoints();
+
+  if (!name || !job) {
+    formMessage.textContent = "名前と職業を入力してください。";
+    return;
+  }
+
+  if (Object.values(stats).some(value =>
+    !Number.isInteger(value) || value < 0 || value > 150
+  )) {
+    formMessage.textContent =
+      "能力値は0〜150の整数で設定してください。";
+    return;
+  }
+
+  if (total !== 300) {
+    formMessage.textContent =
+      "能力ポイントの合計を300にしてください。";
+    return;
+  }
+
+  if (!checkRanks()) {
+    formMessage.textContent =
+      "成長順位を正しく設定してください。";
+    return;
+  }
+
+  const ranks = getGrowthRanks();
+
+  const character = {
+    id: "character-" + Date.now(),
+    name,
+    job,
+    level: 1,
+    exp: 0,
+    stats: {
+      hp: 500,
+      ...stats
+    },
+    growthRanks: ranks,
+    growthWeights: getGrowthWeights(ranks),
+    createdAt: new Date().toISOString()
+  };
+
+  try {
+    // Firebaseの匿名認証を確認
+    const user = await ensureSignedIn();
+
+    // Firestoreに冒険者情報を保存
+    await setDoc(doc(db, "characters", user.uid), {
+      ...character,
+      ownerUid: user.uid,
+      updatedAt: serverTimestamp()
+    });
+
+    // 端末にも保存
+    localStorage.setItem(
+      "adventurerCharacter",
+      JSON.stringify(character)
+    );
+
+    formMessage.textContent = "Firebaseへの保存に成功しました！";
+
+    showResult(character);
+
+  } catch (error) {
+    console.error("冒険者保存エラー:", error);
+
+    formMessage.textContent =
+      "保存できませんでした。通信状況やFirebaseの設定を確認してください。";
+  }
+}
   event.preventDefault();
 
   formMessage.textContent = "";
