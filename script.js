@@ -1,6 +1,11 @@
 
-
 import { db, ensureSignedIn } from "./firebase.js";
+
+import {
+  doc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
 // Firebase匿名認証
 ensureSignedIn()
